@@ -63,7 +63,7 @@ window.addEventListener("load", async () => {
   const { createClient } = deepgram;
   const _deepgram = createClient(key);
 
-  const socket = _deepgram.listen.live({ model: "nova" });
+  const socket = _deepgram.listen.live({ model: "nova", smart_format: true });
 
   socket.on("open", async () => {
     console.log("client: connected to websocket");
