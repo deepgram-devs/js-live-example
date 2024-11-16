@@ -24,6 +24,8 @@ The server code creates a new web socket called `globalSocket` that communicates
 
 Create a `.env` file with your own Deepgram API Key.
 
+> :warning: Make sure your API key has at least "Member" level permissions, <kbd>Create a New API Key</kbd> -> <kbd>Advanced</kbd> -> <kbd>Change Role</kbd>. For more information, see this link on [Working With Roles & API Scopes](https://developers.deepgram.com/docs/working-with-roles).
+
 Run the following commands to install the dependencies and run the application
 
 ```
