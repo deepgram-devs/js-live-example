@@ -14,22 +14,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-const getProjectId = async () => {
-  const { result, error } = await client.manage.getProjects();
-
-  if (error) {
-    throw error;
-  }
-
-  return result.projects[0].project_id;
-};
-
-const getTempApiKey = async (projectId) => {
-  const { result, error } = await client.manage.createProjectKey(projectId, {
-    comment: "short lived",
-    scopes: ["usage:write"],
-    time_to_live_in_seconds: 20,
-  });
+const getTempToken = async () => {
+  const { result, error } = await client.auth.grantToken();
 
   if (error) {
     throw error;
@@ -38,11 +24,10 @@ const getTempApiKey = async (projectId) => {
   return result;
 };
 
-app.get("/key", async (req, res) => {
-  const projectId = await getProjectId();
-  const key = await getTempApiKey(projectId);
+app.get("/token", async (req, res) => {
+  const token = await getTempToken();
 
-  res.json(key);
+  res.json(token);
 });
 
 server.listen(3000, () => {

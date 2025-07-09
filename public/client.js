@@ -50,18 +50,18 @@ async function start(socket) {
   });
 }
 
-async function getTempApiKey() {
-  const result = await fetch("/key");
+async function getTempToken() {
+  const result = await fetch("/token");
   const json = await result.json();
 
-  return json.key;
+  return json.access_token;
 }
 
 window.addEventListener("load", async () => {
-  const key = await getTempApiKey();
+  const token = await getTempToken();
 
   const { createClient } = deepgram;
-  const _deepgram = createClient(key);
+  const _deepgram = createClient({ accessToken: token });
 
   const socket = _deepgram.listen.live({ model: "nova", smart_format: true });
 
