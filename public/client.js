@@ -1,5 +1,7 @@
 const captions = window.document.getElementById("captions");
 
+let fullTranscriptText = "";
+
 async function getMicrophone() {
   const userMedia = await navigator.mediaDevices.getUserMedia({
     audio: true,
@@ -73,8 +75,11 @@ window.addEventListener("load", async () => {
 
       const transcript = data.channel.alternatives[0].transcript;
 
-      if (transcript !== "")
+      if (transcript !== "") {
         captions.innerHTML = transcript ? `<span>${transcript}</span>` : "";
+        fullTranscriptText += transcript + " ";
+        document.getElementById("full-transcript").innerText = fullTranscriptText;
+      }
     });
 
     socket.on("error", (e) => console.error(e));
@@ -86,5 +91,15 @@ window.addEventListener("load", async () => {
     socket.on("close", (e) => console.log(e));
 
     await start(socket);
+  });
+
+  document.getElementById("copy-btn").addEventListener("click", async () => {
+    const text = fullTranscriptText;
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("Transcript copied to clipboard!");
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
   });
 });

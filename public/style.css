@@ -63,6 +63,7 @@ body {
   background: #50cddd;
   box-shadow: 0px 0px 80px #0084f9;
   position: absolute;
+  cursor: pointer;
 }
 
 .recording .button {
@@ -137,4 +138,36 @@ body {
   padding: 1rem;
   color: white;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+#transcript-zone {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+#full-transcript {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+#copy-btn {
+  background: #50cddd;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#copy-btn:hover {
+  background: #3ba8c0;
 }
