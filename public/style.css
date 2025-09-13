@@ -1,19 +1,66 @@
 body {
   background: #4e4e4e;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.brand-header {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  margin-bottom: 20px;
+}
+
+.brand-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.brand-header p {
+  margin: 5px 0 0 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.record-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 300px;
+}
+
+.transcript-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 300px;
 }
 
 .box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .object {
   display: flex;
-  flex: 0 1 100%;
   justify-content: center;
   align-items: center;
-  align-content: stretch;
 }
 
 .outline {
@@ -38,7 +85,9 @@ body {
   border-radius: 50%;
   background: #50cddd;
   box-shadow: 0px 0px 80px #0084f9;
-  position: absolute;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .recording .button {
@@ -52,6 +101,7 @@ body {
     opacity: 0;
     border: 65px solid #000000;
   }
+
   50% {
     border: solid #ffffff;
     opacity: 0.8;
@@ -62,6 +112,7 @@ body {
     opacity: 0.2;
     border: 3px solid #000000;
   }
+
   100% {
     transform: scale(3.3);
     opacity: 0;
@@ -80,6 +131,8 @@ body {
   background: #6bd6e1;
   box-shadow: 0px -2px 15px #e0ff94;
   position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .recording #circlein {
@@ -90,25 +143,143 @@ body {
 .mic-icon {
   height: 60px;
   position: absolute;
-  margin: 21px;
+  top: 21px;
+  left: 21px;
 }
 
 .captions {
-  font: 3.2rem/1.25 Verdana, Geneva, Tahoma, sans-serif;
-  /* font-family: ; */
+  font: 2rem/1.25 Verdana, Geneva, Tahoma, sans-serif;
   text-transform: uppercase;
   text-align: center;
   font-weight: 400;
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translate(-50%, 0);
+  margin-top: 20px;
 }
 
 .captions span {
   display: inline-block;
-  line-height: 4rem;
+  line-height: 2rem;
   padding: 1rem;
   color: white;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+#transcript-zone {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#transcript-zone h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+#full-transcript {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  min-height: 200px;
+}
+
+#copy-btn {
+  background: #50cddd;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#copy-btn:hover {
+  background: #3ba8c0;
+}
+
+#clear-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+#clear-btn:hover {
+  background: #c82333;
+}
+
+#save-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#save-btn:hover {
+  background: #218838;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+#word-count {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+#timer {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .record-section {
+    order: 1;
+  }
+
+  .transcript-section {
+    order: 2;
+  }
+
+  .captions {
+    font-size: 1.5rem;
+  }
+
+  .captions span {
+    max-width: 100%;
+  }
+
+  #transcript-zone {
+    height: 300px;
+  }
 }
