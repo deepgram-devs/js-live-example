@@ -1,11 +1,35 @@
 body {
   background: #4e4e4e;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.brand-header {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  margin-bottom: 50px;
+}
+
+.brand-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.brand-header p {
+  margin: 5px 0 0 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
 .box {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .object {
@@ -52,6 +76,7 @@ body {
     opacity: 0;
     border: 65px solid #000000;
   }
+
   50% {
     border: solid #ffffff;
     opacity: 0.8;
@@ -62,6 +87,7 @@ body {
     opacity: 0.2;
     border: 3px solid #000000;
   }
+
   100% {
     transform: scale(3.3);
     opacity: 0;
